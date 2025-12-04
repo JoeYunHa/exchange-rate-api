@@ -1,6 +1,6 @@
 # MongoDB와 앱을 함께 실행, 네트워크 연결
 
-version: "3.8"
+# version: "3.8" => version warning 제거
 
 services:
   # MongoDB 컨테이너

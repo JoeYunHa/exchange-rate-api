@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/JoeYunHa/exchange-rate-api#readme",
   "dependencies": {
-    "@apollo/server": "^5.2.0",
+    "@apollo/server": "^4.10.0",
     "body-parser": "^2.2.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
