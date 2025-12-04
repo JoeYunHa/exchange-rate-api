@@ -1,1 +1,31 @@
 # MongoDB와 앱을 함께 실행, 네트워크 연결
+
+version: "3.8"
+
+services:
+  # MongoDB 컨테이너
+  mongo:
+    image: mongo:latest
+    container_name: exchange-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  # Node.js 앱 컨테이너
+  app:
+    build: .
+    container_name: exchange-api
+    ports:
+      - "5110:5110"
+    environment:
+      - PORT=5110
+      # localhost아님!!! docker-compose 내부 네트워크에선 서비스명으로 통신
+      - MONGODB_URI=mongodb://mongo:27017/exchange_db
+    depends_on:
+      - mongo
+    volumes:
+      - ./src:/usr/src/app/src
+
+volumes:
+  mongo-data:
