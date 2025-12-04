@@ -1,6 +1,5 @@
 // Query/Mutation 구현
-import { Query } from "mongoose";
-import ExchangeRate from "../models/ExchangeRate";
+import ExchangeRate from "../models/ExchangeRate.js";
 
 const resolvers = {
   Query: {

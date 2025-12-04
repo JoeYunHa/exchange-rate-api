@@ -6,13 +6,12 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import express from "express";
 import http from "http";
 import cors from "cors";
-import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 // import schema, resolver
-import typeDefs from "./schema/typeDefs";
-import resolvers from "./resolvers/index";
+import typeDefs from "./schema/typeDefs.js";
+import resolvers from "./resolvers/index.js";
 
 dotenv.config(); // 환경변수 로드
 
@@ -32,7 +31,13 @@ const server = new ApolloServer({
 await server.start();
 
 // middleware : /graphql -> Apollo가 처리
-app.use("/graphql", cors(), bodyParser.json(), expressMiddleware(server));
+// CORS 허용
+app.use(cors());
+// JSON parser 전역 적용
+// 모든 요청에 대해 Body -> JSON 으로 파싱하여 req.body 생성
+app.use(express.json());
+//GraphQL 엔드포인트 연결
+app.use("/graphql", expressMiddleware(server));
 
 const PORT = process.env.PORT || 5110;
 const MONGODB_URI =

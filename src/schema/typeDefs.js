@@ -1,5 +1,6 @@
 // GraphQL 스키마
-const typeDers = `#graphql
+
+const typeDefs = `#graphql
     type Query {
         "환율 조회: src와 tgt는 필수값입니다."
         getExchangeRate(src: String!, tgt: String!): ExchangeInfo
@@ -14,7 +15,7 @@ const typeDers = `#graphql
     }
 
     input InputUpdateExchangeInfo{
-        str: String!
+        src: String!
         tgt: String!
         rate: Float!
         "값이 없을 경우, 서버 로직에서 오늘 날짜로 처리"
@@ -27,6 +28,7 @@ const typeDers = `#graphql
         date: String!
     }
 
+    directive @key(fields: String!) on OBJECT | INTERFACE
     type ExchangeInfo @key(fields: "src, tgt"){
         src: String!
         tgt: String!
