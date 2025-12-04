@@ -3,6 +3,8 @@
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+// sandbox ui plugin import
+import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 import express from "express";
 import http from "http";
 import cors from "cors";
@@ -24,7 +26,11 @@ const httpServer = http.createServer(app);
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  pulgins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  plugins: [
+    ApolloServerPluginDrainHttpServer({ httpServer }),
+    // 브라우저 접속 시 샌드박스 UI를 보여주도록 설정
+    ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+  ],
 });
 
 // (async)Apollo Server 시작
