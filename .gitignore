@@ -25,3 +25,4 @@ build/
 
 # MongoDB data (if local)
 data/
+mongo-data
