@@ -12,18 +12,6 @@ Tech Stack
 - MongoDB
 - Docker & Docker Compose
 
-프로젝트 구조
-exchange-rate-api/
-├── src/
-│ ├── index.js # 서버 진입점 (Server Entry Point)
-│ ├── schema/ # GraphQL Type Definitions (Schema)
-│ ├── resolvers/ # Business Logic (Query & Mutation)
-│ └── models/ # MongoDB Schema & Model
-├── docker-compose.yml # 컨테이너 오케스트레이션 설정
-├── Dockerfile # Node.js 서버 이미지 빌드 설정
-├── test_api.sh # 자동 테스트 스크립트
-└── README.md # 프로젝트 문서
-
 실행 방법
 
 1. 사전 요구 사항
